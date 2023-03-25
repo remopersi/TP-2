@@ -54,7 +54,7 @@ public class PronosticoDeportivo {
         equipos = new Equipo[cant_equipos];
         
         for (int i=0; i<cant_equipos; i++) {
-            equipos[i] = new Equipo (equipo_nombres[i],"");
+            equipos[i] = new Equipo (i+1, equipo_nombres[i],"");
         }
         return equipos;
     }
