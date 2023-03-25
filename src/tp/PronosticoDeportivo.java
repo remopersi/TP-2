@@ -150,7 +150,7 @@ public class PronosticoDeportivo {
                 
                 // Crear el pronostico
                 Pronostico pron = new Pronostico(
-                        1,   // TODO: Todos los pronosticos tendrán el mismo ID. Corregir !!!
+                        participante*(this.getPartidos().length) + partido +1,   // Para que cada pronostico tenga su propio ID.
                         equipoApuesta,                  // El equipo
                         this.getPartidos()[partido],    // El partido
                         resultadoApuesta                // El resultado
