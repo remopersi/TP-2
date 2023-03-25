@@ -107,7 +107,7 @@ public class PronosticoDeportivo {
             eq2 = this.getEquipos()[i+1]; // el siguiente
             goles1 = rnd.nextInt(3);
             goles2 = rnd.nextInt(3);
-            Partido p = new Partido(eq1,eq2,goles1,goles2);
+            Partido p = new Partido(i+1, eq1,eq2,goles1,goles2);
             this.partidos[p_i] = p;
             p_i++;
         }
@@ -150,6 +150,7 @@ public class PronosticoDeportivo {
                 
                 // Crear el pronostico
                 Pronostico pron = new Pronostico(
+                        1,   // TODO: Todos los pronosticos tendrán el mismo ID. Corregir !!!
                         equipoApuesta,                  // El equipo
                         this.getPartidos()[partido],    // El partido
                         resultadoApuesta                // El resultado

@@ -1,14 +1,16 @@
 package tp;
 
 public class Pronostico {
+    final private int PUNTOS_X_ACERTAR = 3;
+    
     private int idPronostico;
     private Equipo equipo;
     private Partido partido;
     private char resultado;
     
     // Constructors
-    public Pronostico(Equipo equipo, Partido partido, char resultado) {
-        this.idPronostico = 0;
+    public Pronostico(int idPronostico, Equipo equipo, Partido partido, char resultado) {
+        this.idPronostico = idPronostico;
         this.equipo = equipo;
         this.partido = partido;
         this.resultado = resultado;
@@ -67,6 +69,16 @@ public class Pronostico {
     @Override
     public String toString() {
         return "Pronostico{" + "idPronostico=" + idPronostico + ", equipo=" + equipo + ", partido=" + partido + ", resultado=" + resultado + '}';
+    }
+    
+    // Métodos
+    
+    public int puntos() {
+        if (partido.resultado(this.equipo) == this.resultado) {
+            return this.PUNTOS_X_ACERTAR;
+        } else {
+            return 0;
+        }
     }
     
 }

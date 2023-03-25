@@ -1,12 +1,14 @@
 package tp;
 
 public class Partido {
+    private int idPartido;
     private Equipo equipo1, equipo2;
     private int golesEquipo1, golesEquipo2;
     
     // Constructores
 
-    public Partido(Equipo equipo1, Equipo equipo2, int golesEquipo1, int golesEquipo2) {
+    public Partido(int idPartido, Equipo equipo1, Equipo equipo2, int golesEquipo1, int golesEquipo2) {
+        this.idPartido = idPartido;
         this.equipo1 = equipo1;
         this.equipo2 = equipo2;
         this.golesEquipo1 = golesEquipo1;
@@ -14,6 +16,7 @@ public class Partido {
     }
 
     public Partido() {
+        this.idPartido = 0;
         this.equipo1 = null;
         this.equipo2 = null;
         this.golesEquipo1 = 0;
@@ -22,6 +25,14 @@ public class Partido {
     
     // Getters and Setters
 
+    public int getIdPartido() {
+        return idPartido;
+    }
+
+    public void setIdPartido(int idPartido) {
+        this.idPartido = idPartido;
+    }
+    
     public Equipo getEquipo1() {
         return equipo1;
     }
@@ -58,7 +69,30 @@ public class Partido {
 
     @Override
     public String toString() {
-        return "Partido{" + "equipo1=" + equipo1.getNombre() + ", equipo2=" + equipo2.getNombre() + ", golesEquipo1=" + golesEquipo1 + ", golesEquipo2=" + golesEquipo2 + '}';
+        return "Partido{" + "idPartido=" + idPartido +  ", equipo1=" + equipo1.getNombre() + ", equipo2=" + equipo2.getNombre() + ", golesEquipo1=" + golesEquipo1 + ", golesEquipo2=" + golesEquipo2 + '}';
+    }
+    
+    // MÉTODOS 
+    public char resultado(Equipo equipo) {
+        if (golesEquipo1 == golesEquipo2) {
+            return 'E';
+        }
+        
+        if ( equipo.getIdEquipo() == equipo1.getIdEquipo() ) {
+            // En este caso, está preguntando cómo le fue al Equipo 1.
+            if ( golesEquipo1 > golesEquipo2 ) {
+                return 'G';
+            } else {
+                return 'P';
+            }
+        } else {
+            // En este caso, está preguntando cómo le fue al Equipo 2.
+            if ( golesEquipo1 > golesEquipo2 ) {
+                return 'P';
+            } else {
+                return 'G';
+            }
+        }
     }
     
 }
