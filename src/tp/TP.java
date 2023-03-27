@@ -37,11 +37,13 @@ public class TP {
         System.out.println ("=== PRONOSTICO ===");
         System.out.println (PRODE.listarPronosticos());
         
-        System.out.println ("=== PROBANDO CLASE: ListaEquipos ===");
+        System.out.println ("=== PROBANDO CLASE: ListaEquipos.cargarDeArchivo() ===");
         ListaEquipos lc = new ListaEquipos();
         lc.setNombreArchivo("./Equipos.csv");
         lc.cargarDeArchivo();
         
+        System.out.println ("=== PROBANDO CLASE: ListaEquipos.listarEquipos() ===");
+        lc.listarEquipos();
     }
     
 }
