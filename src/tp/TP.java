@@ -4,6 +4,7 @@
  */
 package tp;
 
+
 public class TP {
 
     public static PronosticoDeportivo PRODE;
@@ -35,6 +36,11 @@ public class TP {
         PRODE.cargarPronosticos();   
         System.out.println ("=== PRONOSTICO ===");
         System.out.println (PRODE.listarPronosticos());
+        
+        System.out.println ("=== PROBANDO CLASE: ListaEquipos ===");
+        ListaEquipos lc = new ListaEquipos();
+        lc.setNombreArchivo("./Equipos.csv");
+        lc.cargarDeArchivo();
         
     }
     
