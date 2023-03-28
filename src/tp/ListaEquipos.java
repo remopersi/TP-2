@@ -62,6 +62,7 @@ public class ListaEquipos extends ArrayList {
         String vectorEquipo[];
         Scanner sc = null;
         Equipo auxEquipo = null;
+        boolean todoOk = true;
         if (this.equipos == null) {
             equipos = new ArrayList<Equipo>();
         } else {
@@ -78,29 +79,55 @@ public class ListaEquipos extends ArrayList {
         try {
             sc = new Scanner(new File(this.nombreArchivo));
             sc.useDelimiter("\n"); // Leerá por renglones.
-            while (sc.hasNext()){
+            int linea = 1;
+            while (sc.hasNext() && todoOk){
                 infoDelEquipo = sc.next();
+                if (linea == 1) {
+                    linea++;
+                    continue; // Salteo la primer línea (encabezado).
+                } else {
+                    linea++;
+                }
                 System.out.println("Línea leída del archivo: " + infoDelEquipo);
                 vectorEquipo = infoDelEquipo.split(",");
-                System.out.println("Equipo: " + vectorEquipo[0] + ", Descripcion: " + vectorEquipo[1] + ".");
+                System.out.println("idEquipo: " + vectorEquipo[0] + ", Equipo: " + vectorEquipo[1] + ", Descripcion: " + vectorEquipo[2] + ".");
                 // Creo un nuevo objeto Equipo a partir del dato reción leído.
-                auxEquipo = new Equipo(equipos.size(),vectorEquipo[0],vectorEquipo[1]);
+                // Al mismo tiempo, verifico que vectorEquipo[0] sea realmente un entero,
+                // caso contrario, arrojará una excepción y el catch la atrapará.
+                // También debo verificar que el split divida en tres partes y que el id sea no negativo.
+                if ((Integer.parseInt(vectorEquipo[0]) >= 0) && (vectorEquipo.length == 3)) {
+                    auxEquipo = new Equipo(Integer.parseInt(vectorEquipo[0]),vectorEquipo[1], vectorEquipo[2]);
+                } else {
+                    todoOk = false;
+                }
+                
                 // Agrego el objeto recién creado a al atributo que contiene el ArrayList de Equipos.
                 equipos.add(auxEquipo);
+                linea++;
             }
-        } catch (IOException e){
-            System.out.println("Mensaje: " + e.getMessage());
+        } catch (IOException | NumberFormatException e1){
+            System.out.println("Mensaje: " + e1.getMessage());
         } finally {
             try {
-                // Si no se cargó ningún equipo en la lista, entonces la pongo en null.
+                // Si apareció en el archivo alguna línea fuera de formato,
+                // entonces vacío la lista de equipos.
+                if (!todoOk) {
+                    while (!equipos.isEmpty()) {
+                    equipos.remove(0);
+                    }
+                    equipos = null;
+                }
+                // Si no se cargó ningún equipo en la lista o la vacié en el 
+                // paso anterior, entonces la pongo en null.
                 if (equipos.isEmpty()) {
                     equipos = null;
                 }
+                // Si llegó a abrir el Scanner con éxito, aquí lo cierro.
                 if (sc != null){
                     sc.close();
                 }
-            } catch  (Exception e2) {
-                System.out.println("Mensaje: " + e2.getMessage());
+            } catch  (Exception e3) {
+                System.out.println("Mensaje: " + e3.getMessage());
             }
         }
         System.out.println("Fin de archivo.");
