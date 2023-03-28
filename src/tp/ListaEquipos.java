@@ -6,17 +6,20 @@ package tp;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Scanner;
 
+// Solo en al momento de instanciar la lista (al hacer el new()) se usa ArrayList !!!
+
 public class ListaEquipos extends ArrayList {
-    private ArrayList<Equipo> equipos;
+    private List<Equipo> equipos;
     private String nombreArchivo;
     
     // CONSTRUCTORES
 
-    public ListaEquipos(ArrayList<Equipo> equipos, String nombreArchivo) {
+    public ListaEquipos(List<Equipo> equipos, String nombreArchivo) {
         super();
         this.equipos = equipos;
         this.nombreArchivo = nombreArchivo;
@@ -30,11 +33,11 @@ public class ListaEquipos extends ArrayList {
     
     // GETTERS AND SETTERS
 
-    public ArrayList<Equipo> getEquipos() {
+    public List<Equipo> getEquipos() {
         return equipos;
     }
 
-    public void setEquipos(ArrayList<Equipo> equipos) {
+    public void setEquipos(List<Equipo> equipos) {
         this.equipos = equipos;
     }
 
