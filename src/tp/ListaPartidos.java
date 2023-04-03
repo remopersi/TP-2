@@ -65,6 +65,19 @@ public class ListaPartidos extends ArrayList {
         return lista;
     }
     
+        public Partido getPartido(int idPartido) {
+        Partido partido = null;
+        if (this.partidos != null){
+            for(Partido p : this.partidos) {
+                if(p.getIdPartido() == idPartido){
+                    partido = p;
+                    break;
+                }
+            }
+        }
+        return partido;
+    }
+    
     void cargarDeArchivo(ListaEquipos equipos){
         String infoDelPartido = "";
         String vectorPartido[];
