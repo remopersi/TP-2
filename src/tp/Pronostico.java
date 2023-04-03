@@ -1,7 +1,7 @@
 package tp;
 
 public class Pronostico {
-    final private int PUNTOS_X_ACERTAR = 3;
+    final private int PUNTOS_X_ACERTAR = 1;
     
     private int idPronostico;
     private Equipo equipo;
