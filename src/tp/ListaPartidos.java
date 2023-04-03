@@ -52,14 +52,17 @@ public class ListaPartidos extends ArrayList {
     }
     
     // MÉTODOS
-    
-    void listarPartidos() {
-        Iterator<Partido> it;
-        it = this.partidos.iterator();
-        while (it.hasNext()){
-            Partido partido = it.next();
-            System.out.println(partido);
+    // Arma un String con el listado de partidos levantados de archivo.
+    public String listar() {
+        String lista = "";
+        if (this.partidos != null){
+            Iterator<Partido> it = this.partidos.iterator();
+            while (it.hasNext()){
+                Partido partido = it.next();
+                lista += (partido + "\n");
+            }
         }
+        return lista;
     }
     
     void cargarDeArchivo(ListaEquipos equipos){
@@ -93,13 +96,13 @@ public class ListaPartidos extends ArrayList {
                 } else {
                     linea++;
                 }
-                System.out.println("Línea leída del archivo: " + infoDelPartido);
+                // System.out.println("Línea leída del archivo: " + infoDelPartido);
                 vectorPartido = infoDelPartido.split(",");
-                System.out.print("idPartido: " + vectorPartido[0]);
-                System.out.print(", idEquipo1: " + vectorPartido[1]);
-                System.out.print(", idEquipo2: " + vectorPartido[2]);
-                System.out.print(", golesEquipo1: " + vectorPartido[3]);
-                System.out.println(", golesEquipo2: " + vectorPartido[4] + ".");
+                // System.out.print("idPartido: " + vectorPartido[0]);
+                // System.out.print(", idEquipo1: " + vectorPartido[1]);
+                // System.out.print(", idEquipo2: " + vectorPartido[2]);
+                // System.out.print(", golesEquipo1: " + vectorPartido[3]);
+                // System.out.println(", golesEquipo2: " + vectorPartido[4] + ".");
 
                 // Creo un nuevo objeto Equipo a partir del dato reción leído.
                 // Al mismo tiempo, verifico que vectorPartido[0..4] sean realmente enteros,
@@ -129,7 +132,7 @@ public class ListaPartidos extends ArrayList {
                 linea++;
             }
         } catch (IOException | NumberFormatException e1){
-            System.out.println("Mensaje: " + e1.getMessage());
+            System.out.println("Exception - Mensaje: " + e1.getMessage());
         } finally {
             try {
                 // Si apareció en el archivo alguna línea fuera de formato,
@@ -150,10 +153,10 @@ public class ListaPartidos extends ArrayList {
                     sc.close();
                 }
             } catch  (Exception e3) {
-                System.out.println("Mensaje: " + e3.getMessage());
+                System.out.println("Exception Mensaje: " + e3.getMessage());
             }
         }
-        System.out.println("Fin de archivo.");
+        // System.out.println("Fin de archivo.");
     }
       
 }

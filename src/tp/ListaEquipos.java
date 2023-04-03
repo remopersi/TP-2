@@ -64,14 +64,17 @@ public class ListaEquipos extends ArrayList {
         return equipo;
     }
             
-    
-    void listarEquipos() {
-        Iterator<Equipo> it;
-        it = this.equipos.iterator();
-        while (it.hasNext()){
-            Equipo equipo = it.next();
-            System.out.println(equipo);
+    // Metodo para devolver un string con 
+    // la lista de todos los equipos.
+    public String listar() {
+        String lista = "";
+        if (this.equipos != null){
+            for (Equipo equipo : this.equipos) {
+                // System.out.println(equipo);
+                lista += (equipo + "\n");
+            }
         }
+        return lista;
     }
     
     void cargarDeArchivo(){
@@ -105,9 +108,9 @@ public class ListaEquipos extends ArrayList {
                 } else {
                     linea++;
                 }
-                System.out.println("Línea leída del archivo: " + infoDelEquipo);
+                // System.out.println("Línea leída del archivo: " + infoDelEquipo);
                 vectorEquipo = infoDelEquipo.split(",");
-                System.out.println("idEquipo: " + vectorEquipo[0] + ", Equipo: " + vectorEquipo[1] + ", Descripcion: " + vectorEquipo[2] + ".");
+                // System.out.println("idEquipo: " + vectorEquipo[0] + ", Equipo: " + vectorEquipo[1] + ", Descripcion: " + vectorEquipo[2] + ".");
                 // Creo un nuevo objeto Equipo a partir del dato reción leído.
                 // Al mismo tiempo, verifico que vectorEquipo[0] sea realmente un entero,
                 // caso contrario, arrojará una excepción y el catch la atrapará.
@@ -122,8 +125,10 @@ public class ListaEquipos extends ArrayList {
                 equipos.add(auxEquipo);
                 linea++;
             }
-        } catch (IOException | NumberFormatException e1){
-            System.out.println("Mensaje: " + e1.getMessage());
+        } catch (IOException e1) {
+            System.out.println("IOException - Mensaje E1: " + e1.getMessage());
+        } catch (NumberFormatException e2){
+            System.out.println("NumberFormatException - Mensaje E2: " + e2.getMessage());
         } finally {
             try {
                 // Si apareció en el archivo alguna línea fuera de formato,
@@ -144,10 +149,10 @@ public class ListaEquipos extends ArrayList {
                     sc.close();
                 }
             } catch  (Exception e3) {
-                System.out.println("Mensaje: " + e3.getMessage());
+                System.out.println("Exception - Mensaje E3: " + e3.getMessage());
             }
         }
-        System.out.println("Fin de archivo.");
+        // System.out.println("Fin de archivo.");
     }
     
 }
