@@ -51,6 +51,20 @@ public class ListaEquipos extends ArrayList {
     
     // MÉTODOS
     
+    public Equipo getEquipo(int idEquipo) {
+        Equipo equipo = null;
+        if (this.equipos != null){
+            for(Equipo eq : this.equipos) {
+                if(eq.getIdEquipo() == idEquipo){
+                    equipo = eq;
+                    break;
+                }
+            }
+        }
+        return equipo;
+    }
+            
+    
     void listarEquipos() {
         Iterator<Equipo> it;
         it = this.equipos.iterator();
