@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Scanner;
 
 // ACLARACIÓN IMPORTANTE:
+// Modificado
 // El archivo "pronosticos.csv" contiene todos los pronósticos,
 // realizados por todos los participantes.
 // El tema es que cada participante tiene su lista de pronóstics
